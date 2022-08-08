@@ -1,12 +1,15 @@
 .write {
+  display: flex;
+  flex-direction: column;
   height: 100vh;
   padding: 32px 32px 64px;
   background: #F5F6F7;
 
   .main {
+    flex: 1;
     background: white;
     border-radius: 30px;
-    height: 100%;
+    margin-bottom: 32px;
   }
 
   .canvas {

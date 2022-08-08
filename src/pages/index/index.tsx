@@ -1,16 +1,17 @@
 import { FC, useEffect, useRef } from 'react'
 import { View, Canvas } from '@tarojs/components'
-import { CanvasContext, createCanvasContext } from '@tarojs/taro'
+import { CanvasContext, createCanvasContext, canvasToTempFilePath, previewImage } from '@tarojs/taro'
+import { Button, Flex } from '@taroify/core'
 import './index.scss'
 
-const MyDetail: FC = () => {
+const Index: FC = () => {
   const ref = useRef<CanvasContext>()
   const config = useRef<any>()
   useEffect(() => {
     ref.current = createCanvasContext('writeBox')
     config.current = {
       canvasWidth: 343,
-      canvasHeight: 676,
+      canvasHeight: 616,
       transparent: 1, // 透明度
       selectColor: 'black',
       lineColor: '#2677FF', // 颜色
@@ -273,6 +274,27 @@ const MyDetail: FC = () => {
     ref.current?.draw(true)
   }
 
+  const reset = () => {
+    ref.current?.clearRect(0, 0, 700, 730)
+    ref.current?.draw()
+  }
+
+  const submit = () => {
+    canvasToTempFilePath({
+      canvasId: 'writeBox',
+      // fileType: 'jpg',//加上后有白色背景，不加就是透明的
+      success(res) {
+        console.log(res.tempFilePath);
+        previewImage({
+          current: res.tempFilePath,
+          urls: [res.tempFilePath]
+        })
+      },
+      fail: function () {
+        console.log('fail-downloadFile')
+      }
+    })
+  }
 
   return <View className='write'>
     <View className='main' id='main'>
@@ -284,7 +306,15 @@ const MyDetail: FC = () => {
         onTouchEnd={onTouchEnd}
       />
     </View>
+    <Flex gutter={20} justify='end'>
+      <Flex.Item span={8}>
+        <Button block color="warning" shape='round' size='medium' onClick={reset}>重 置</Button>
+      </Flex.Item>
+      <Flex.Item span={8}>
+        <Button block color="primary" shape='round' size='medium' onClick={submit}>提 交</Button>
+      </Flex.Item>
+    </Flex>
   </View>
 }
 
-export default MyDetail
+export default Index

@@ -1,18 +1,16 @@
 {
     "miniprogramRoot": "dist/",
-    "projectname": "hand-writing-signature",
     "description": "项目配置文件，详见文档：https://developers.weixin.qq.com/miniprogram/dev/devtools/projectconfig.html",
-    "appid": "wx9bcb8c3808e3dd61",
     "setting": {
         "urlCheck": true,
         "es6": false,
-        "postcss": false,
+        "postcss": true,
         "preloadBackgroundData": false,
         "minified": true,
         "newFeature": true,
         "autoAudits": false,
         "coverView": true,
-        "showShadowRootInWxmlPanel": false,
+        "showShadowRootInWxmlPanel": true,
         "scopeDataCheck": false,
         "useCompilerModule": false,
         "minifyWXML": true,
@@ -33,20 +31,22 @@
             "outputPath": ""
         },
         "disableUseStrict": false,
-        "useCompilerPlugins": false
+        "useCompilerPlugins": false,
+        "useIsolateContext": true,
+        "ignoreUploadUnusedFiles": true
     },
     "compileType": "miniprogram",
     "simulatorType": "wechat",
     "simulatorPluginLibVersion": {},
-    "libVersion": "2.25.1",
     "condition": {},
     "srcMiniprogramRoot": "dist/",
-    "packOptions": {
-        "ignore": [],
-        "include": []
-    },
     "editorSetting": {
         "tabIndent": "insertSpaces",
         "tabSize": 4
+    },
+    "libVersion": "2.25.2",
+    "packOptions": {
+        "ignore": [],
+        "include": []
     }
 }
